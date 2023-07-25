@@ -54,7 +54,7 @@ class Signup extends Component {
   }
   // apis
   apiSignup(account) {
-    axios.post('http://localhost:8433/api/customer/signup', account).then((res) => {
+    axios.post('/api/customer/signup', account).then((res) => {
       const result = res.data;
       alert(result.message);
     });

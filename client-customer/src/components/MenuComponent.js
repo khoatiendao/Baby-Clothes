@@ -45,7 +45,7 @@ class Menu extends Component {
   }
   // apis
   apiGetCategories() {
-    axios.get('http://localhost:8433/api/customer/categories').then((res) => {
+    axios.get('/api/customer/categories').then((res) => {
       const result = res.data;
       this.setState({ categories: result });
     });

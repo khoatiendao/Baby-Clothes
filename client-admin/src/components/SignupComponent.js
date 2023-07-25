@@ -28,7 +28,7 @@ class SignupComponent extends Component {
   };
   // Code xử lý đăng ký ở đây
   apiSignUpAdmin(accountAdmin) {
-    axios.post('http://localhost:8433/api/admin/signup-admin', accountAdmin).then((res) => {
+    axios.post('/api/admin/signup-admin', accountAdmin).then((res) => {
       const result = res.data;
       alert(result.message);
     });

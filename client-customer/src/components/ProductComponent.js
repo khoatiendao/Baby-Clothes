@@ -46,13 +46,13 @@ class Product extends Component {
   }
   // apis
   apiGetProductsByCatID(cid) {
-    axios.get('http://localhost:8433/api/customer/products/category/' + cid).then((res) => {
+    axios.get('/api/customer/products/category/' + cid).then((res) => {
       const result = res.data;
       this.setState({ products: result });
     });
   }
   apiGetProductsByKeyword(keyword) {
-    axios.get('http://localhost:8433/api/customer/products/search/' + keyword).then((res) => {
+    axios.get('/api/customer/products/search/' + keyword).then((res) => {
       const result = res.data;
       this.setState({ products: result });
     });

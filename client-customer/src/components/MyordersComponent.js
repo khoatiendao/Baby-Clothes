@@ -94,7 +94,7 @@ class Myorders extends Component {
   // apis
   apiGetOrdersByCustID(cid) {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.get('http://localhost:8433/api/customer/orders/customer/' + cid, config).then((res) => {
+    axios.get('/api/customer/orders/customer/' + cid, config).then((res) => {
       const result = res.data;
       this.setState({ orders: result });
     });

@@ -79,7 +79,7 @@ class Product extends Component {
   // apis
   apiGetProducts(page) {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.get('http://localhost:8433/api/admin/products?page=' + page, config).then((res) => {
+    axios.get('/api/admin/products?page=' + page, config).then((res) => {
       const result = res.data;
       this.setState({ products: result.products, noPages: result.noPages, curPage: result.curPage });
     });

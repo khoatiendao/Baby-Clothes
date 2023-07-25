@@ -80,7 +80,7 @@ class ProductDetail extends Component {
   }
   // apis
   apiGetProduct(id) {
-    axios.get('http://localhost:8433/api/customer/products/' + id).then((res) => {
+    axios.get('/api/customer/products/' + id).then((res) => {
       const result = res.data;
       this.setState({ product: result });
     });

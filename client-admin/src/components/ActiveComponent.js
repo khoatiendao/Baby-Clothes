@@ -41,7 +41,7 @@ class Active extends Component {
   // apis
   apiActive(username, code) {
     const body = { username: username, code: code };
-    axios.post('http://localhost:8433/api/admin/active', body).then((res) => {
+    axios.post('/api/admin/active', body).then((res) => {
       const result = res.data;
       if (result) {
         alert('OK BABY!');

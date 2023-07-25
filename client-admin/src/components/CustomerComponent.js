@@ -126,7 +126,7 @@ class Customer extends Component {
   // apis
   apiGetCustomerSendmail(id) {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.get('http://localhost:8433/api/admin/customer/sendmail/' + id, config).then((res) => {
+    axios.get('/api/admin/customer/sendmail/' + id, config).then((res) => {
       const result = res.data;
       alert(result.message);
     });
@@ -139,7 +139,7 @@ class Customer extends Component {
   apiPutCustomerDeactive(id, token) {
     const body = { token: token };
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.put('http://localhost:8433/api/admin/customers/deactive/' + id, body, config).then((res) => {
+    axios.put('/api/admin/customers/deactive/' + id, body, config).then((res) => {
       const result = res.data;
       if (result) {
         this.apiGetCustomers();
@@ -162,14 +162,14 @@ class Customer extends Component {
   // apis
   apiGetCustomers() {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.get('http://localhost:8433/api/admin/list/customers', config).then((res) => {
+    axios.get('/api/admin/list/customers', config).then((res) => {
       const result = res.data;
       this.setState({ customers: result });
     });
   }
   apiGetOrdersByCustID(cid) {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.get('http://localhost:8433/api/admin/orders/list/customer/' + cid, config).then((res) => {
+    axios.get('/api/admin/orders/list/customer/' + cid, config).then((res) => {
       const result = res.data;
       this.setState({ orders: result });
     });

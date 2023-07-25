@@ -79,7 +79,7 @@ class Mycart extends Component {
   apiCheckout(total, items, customer) {
     const body = { total: total, items: items, customer: customer };
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.post('http://localhost:8433/api/customer/checkout', body, config).then((res) => {
+    axios.post('/api/customer/checkout', body, config).then((res) => {
       const result = res.data;
       if (result) {
         alert('OK BABY!');

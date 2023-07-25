@@ -70,7 +70,7 @@ class Myprofile extends Component {
   // apis
   apiPutCustomer(id, customer) {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.put('http://localhost:8433/api/customer/profile/' + id, customer, config).then((res) => {
+    axios.put('/api/customer/profile/' + id, customer, config).then((res) => {
       const result = res.data;
       if (result) {
         alert('OK BABY!');

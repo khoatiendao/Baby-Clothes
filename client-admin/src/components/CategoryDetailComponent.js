@@ -82,7 +82,7 @@ class CategoryDetail extends Component {
   // apis
   apiPostCategory(cate) {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.post('http://localhost:8433/api/admin/add-category', cate, config).then((res) => {
+    axios.post('/api/admin/add-category', cate, config).then((res) => {
       const result = res.data;
       if (result) {
         alert('Thành Công!');
@@ -94,14 +94,14 @@ class CategoryDetail extends Component {
   }
   apiGetCategories() {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.get('http://localhost:8433/api/admin/categories', config).then((res) => {
+    axios.get('/api/admin/categories', config).then((res) => {
       const result = res.data;
       this.props.updateCategories(result);
     });
   }
   apiPutCategory(id, cate) {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.put('http://localhost:8433/api/admin/category/' + id, cate, config).then((res) => {
+    axios.put('/api/admin/category/' + id, cate, config).then((res) => {
       const result = res.data;
       if (result) {
         alert('Thành Công!');
@@ -113,7 +113,7 @@ class CategoryDetail extends Component {
   }
   apiDeleteCategory(id) {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.delete('http://localhost:8433/api/admin/category/' + id, config).then((res) => {
+    axios.delete('/api/admin/category/' + id, config).then((res) => {
       const result = res.data;
       if (result) {
         alert('Thành Công');
