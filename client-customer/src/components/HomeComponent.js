@@ -58,7 +58,7 @@ class Home extends Component {
     });
   }
   apiGetHotProducts() {
-    axios.get('/customer/products/hot').then((res) => {
+    axios.get('/api/customer/products/hot').then((res) => {
       const result = res.data;
       this.setState({ hotprods: result });
     });
