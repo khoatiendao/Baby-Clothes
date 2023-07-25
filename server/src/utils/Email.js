@@ -2,7 +2,7 @@ const mailer = require('nodemailer');
 const MyConstant = require('./MyConstant');
 // const randomNumber = require('./RandomString')
 const hbs = require('handlebars');
-const expressHbs = require('express-handlebars');
+// const expressHbs = require('express-handlebars');
 const transporter = mailer.createTransport({
     host: 'smtp.gmail.com', // SMTP server của gmail
     port: '465', // port của SMTP server
