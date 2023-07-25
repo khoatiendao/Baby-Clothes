@@ -1,0 +1,44 @@
+
+/* Chọn lớp "align-center" và căn giữa nội dung bên trong */
+/* Chọn lớp "align-center" và căn giữa nội dung bên trong */
+.align-center_HOME {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Đảm bảo nội dung được căn giữa theo chiều dọc */
+  }
+  
+  /* Định dạng cho tiêu đề "h2" */
+  .text-center_HOME {
+    font-size: 28px; /* Tăng kích thước chữ lên */
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    /* Thêm bất kỳ kiểu chữ, màu sắc và thuộc tính CSS khác tùy chỉnh khác */
+    cursor: pointer; /* Thêm hiệu ứng con trỏ khi di chuột qua tiêu đề */
+    transition: color 0.3s ease; /* Hiệu ứng màu sắc mềm mại trong 0.3 giây */
+    animation: colorChange 5s infinite; /* Áp dụng animation "colorChange" kéo dài 5 giây và lặp vô hạn */
+  }
+  
+  /* Hiệu ứng hover khi di chuột qua tiêu đề */
+  .text-center_HOME:hover {
+    color: #ff5500; /* Thay đổi màu sắc khi di chuột qua tiêu đề */
+  }
+  
+  /* Định nghĩa animation "colorChange" */
+  @keyframes colorChange {
+    0% {
+      color: #333; /* Màu ban đầu */
+      font-size: 50px; /* Kích thước chữ ban đầu */
+    }
+    50% {
+      color: #ff5500; /* Màu giữa chừng */
+      font-size: 100px; /* Kích thước chữ giữa chừng */
+    }
+    100% {
+      color: #333; /* Màu kết thúc */
+      font-size: 50px; /* Kích thước chữ kết thúc */
+    }
+  }
+

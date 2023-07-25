@@ -1,0 +1,116 @@
+/* LoginComponent.css */
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+}
+
+.login-title {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 20px;
+  max-width: 300px;
+  background-color: #efe4d3;
+  width: 100%;
+}
+
+
+.login-field {
+  margin-bottom: 10px;
+}
+
+.login-field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.login-field input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-btn {
+  padding: 10px 16px;
+  background-color: #ff9f00;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+
+
+.login-btn:hover {
+  background-color: #ffbf80;
+}
+
+/* ... (các phần CSS còn lại) */
+
+.login-title {
+  display: inline-block;
+  font-size: 28px;
+  color: #ff9f00; /* Màu cam */
+  animation: fadeInOut 3s infinite;
+  margin-right: 80px;
+}
+
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0.8; /* Điểm đầu và cuối: mờ */
+    transform: scale(1); /* Kích thước ban đầu */
+  }
+  50% {
+    opacity: 1; /* Giữa chừng: hiển thị rõ ràng */
+    transform: scale(1.2); /* Kích thước tăng lên */
+  }
+}
+
+.login-field {
+  margin-bottom: 20px;
+}
+
+.login-field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.login-field input[type="text"],
+.login-field input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  width: 280px;
+}
+
+.login-field input[type="text"]::placeholder,
+.login-field input[type="password"]::placeholder {
+  color: #999;
+}
+
+.login-field input[type="text"]:focus,
+.login-field input[type="password"]:focus {
+  outline: none;
+  border-color: #ff9f00; /* Màu cam khi focus */
+  box-shadow: 0 0 4px #ff9f00; /* Đổ bóng khi focus */
+}
+

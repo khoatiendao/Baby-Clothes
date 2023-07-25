@@ -1,0 +1,53 @@
+/* Định dạng tiêu đề "h2" */
+h2.text-center_Categorydetail {
+    font-size: 21.5px;
+    color: #333;
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  
+  .category-detail-container {
+    float: right;
+    /* Thêm các quy tắc CSS cho container nếu cần */
+  }
+  
+  .category-detail-title {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    /* Thêm các quy tắc CSS cho tiêu đề nếu cần */
+  }
+  
+  .category-detail-label {
+    /* Thêm các quy tắc CSS cho các nhãn (label) nếu cần */
+  }
+  
+  /* Quy tắc CSS cho các nút */
+  .btn-add,
+  .btn-update,
+  .btn-delete {
+    padding: 10px 16px;
+    background-color: #ff9f00; /* Màu cam nhạt */
+    color: #fff; /* Màu chữ trắng */
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+    margin-top: 8px;
+  }
+  
+  /* Hiệu ứng hover khi di chuột qua nút */
+  .btn-add:hover,
+  .btn-update:hover,
+  .btn-delete:hover {
+    background-color: #ffbf80; /* Màu cam nhạt khi hover */
+  }
+
+  .text_1{
+    width: 288px;
+  }

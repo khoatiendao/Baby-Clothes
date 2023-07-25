@@ -1,0 +1,75 @@
+.login {
+    display: flex;
+    text-align: left;
+    justify-content: center;
+    padding-top: 50px;
+  }
+  
+  .box-form div {
+    height: auto;
+  }
+  
+  
+  .box-form {
+    margin: 0 auto;
+    width: 80%;
+    background: #FFFFFF;
+    margin: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 100%;
+    align-items: stretch;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 3px 2px 20px 10px #cbb08b;
+    padding: 40px;
+    text-align: center;
+    justify-content: center;
+    max-width: 500px;
+  }
+  
+  @media (max-width: 480px) {
+    .box-form {
+        display: block;
+        padding: 20px;
+        text-align: center;
+        align-content: center;
+        align-items: center;
+    }
+  }
+  
+  .box-form input {
+    margin-top: 5px !important;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #B0B3B9;
+  }
+  
+  
+  .box-form .submitBtn {
+    font-size: 16px;
+    padding: 10px 25px;
+    border-radius: 50px;
+    display: inline-block;
+    margin: 0 auto;
+    box-shadow: 0px 2px 10px 0px #487f9e;
+    background: linear-gradient(#f3e8f1, #dcc8db);
+    transition: background 1s ease;
+    margin-top:20px
+  }
+  
+  .box-form .submitBtn:hover {
+    background: linear-gradient(#6fadd3, #8dafc4);
+  }
+  
+  .box-form .submitBtn button {
+    background: none;
+    border: 0;
+    outline: 0;
+    padding-right: 10px;
+    color: #000;
+    cursor: pointer;
+  }
