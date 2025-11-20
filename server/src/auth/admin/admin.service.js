@@ -1,5 +1,5 @@
-const mongooseutils = require('../utils/MongooseUtil');
-const Models = require('./Models');
+const mongooseutils = require('../../utils/MongooseUtil');
+const Models = require('../../models/Models');
 const mongoose = require("mongoose");
 const bcrypt = require('bcrypt');
 
