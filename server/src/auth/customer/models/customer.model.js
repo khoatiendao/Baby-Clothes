@@ -38,7 +38,7 @@ const customerSchema = new Schema(
     },
     image: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Image',
+      ref: 'File',
     },
     status: {
       type: String,
