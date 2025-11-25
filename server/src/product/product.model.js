@@ -52,9 +52,7 @@ const productSchema = new Schema({
   variants: [
     {
       color: String,
-      size: String,
-      stock: Number,
-      sku: String,
+      size: String,      
     },
   ],
   sold: {

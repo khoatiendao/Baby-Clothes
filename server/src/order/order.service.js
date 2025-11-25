@@ -1,5 +1,5 @@
 const mongooseutils = require('../utils/MongooseUtil');
-const models = require('./Models');
+const models = require('../models/Models');
 
 const OrderDAO = {
     async insert(order) {
