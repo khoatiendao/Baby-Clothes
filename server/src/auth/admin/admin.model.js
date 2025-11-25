@@ -23,7 +23,13 @@ const adminSchema = new Schema({
         trim: true,
         minLength: 5,
         maxLength: 255,
-    },        
+    },
+    permission: {
+        type: String,
+        enum: ['ALL', 'READ', 'CREATE', 'UPDATE', 'DELETE'],
+        require: true,
+        default: 'ALL'
+    },
 }, {
     versionKey: 'version',
     timestamps: true
