@@ -1,12 +1,10 @@
-const express = require('express');
+import express from 'express';
+import bodyParser from 'body-parser';
+import mongooseConn from './config/mongoose.js';
+import apiAdmin from './api/admin.js';
+
 const app = express();
 const PORT = process.env.PORT || 8433;
-const bodyParser = require('body-parser');
-// const mongoose = require('mongoose');
-const mongooseUtils = require('./utils/MongooseUtil');
-// const Models = require("./models/Models");
-// const cors = require('cors');
-
 
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
@@ -24,7 +22,7 @@ app.use(function(req, res, next) {
     next()
 });
 
-app.use('/api/admin', require('./api/admin.js'));
+app.use('/api/admin', apiAdmin);
 
 app.use('/api/customer', require('./api/customer.js'));
 
