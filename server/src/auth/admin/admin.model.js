@@ -3,7 +3,7 @@ import mongoose, {Schema} from "mongoose";
 const adminSchema = new Schema({
     username: {
         type: String,
-        require: true,
+        required: true,
         unique: true,
         trim: true,
         minLength: 5,
@@ -11,14 +11,14 @@ const adminSchema = new Schema({
     },
     password: {
         type: String,
-        require: true,
+        required: true,
         trim: true,
         minLength: 5,
         maxLength: 50
     },
     email: {
         type: String,
-        require: true,
+        required: true,
         unique: true,
         trim: true,
         minLength: 5,
@@ -27,7 +27,7 @@ const adminSchema = new Schema({
     permission: {
         type: String,
         enum: ['ALL', 'READ', 'CREATE', 'UPDATE', 'DELETE'],
-        require: true,
+        required: true,
         default: 'ALL'
     },
 }, {

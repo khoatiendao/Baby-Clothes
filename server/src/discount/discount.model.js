@@ -5,7 +5,7 @@ const discountSchema = new Schema(
   {
     name: {
       type: String,
-      require: true,
+      required: true,
       minLength: 3,
       maxLength: 255,
     },
@@ -15,33 +15,33 @@ const discountSchema = new Schema(
     typeDiscount: {
         type: String,
         enum: ['PRICE', 'PERCENTAGE'],
-        require: true,
+        required: true,
     },
     numberDiscount: {
         type: Number,
-        require: true,
+        required: true,
     },
     status: {
         type: String,
         enum: ['OPEN', 'CLOSED', 'USED', 'OUT OF QUANTITY'],
-        require: true,
+        required: true,
     },
     startDate: {
         type: String,
-        require: true
+        required: true
     },
     endDate: {
         type: String,
-        require: true,
+        required: true,
     },
     quantity: {
         type: Number,
-        require: true,
+        required: true,
         default: 1
     },
     useLimit: {
         type: Number,
-        require: true,
+        required: true,
         default: 1
     }
   },

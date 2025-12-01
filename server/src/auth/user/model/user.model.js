@@ -6,7 +6,7 @@ const userSchema = new Schema(
     role: {
       type: String,
       enum: ['USER', 'ADMIN', 'MERCHANT'],
-      require: true,
+      required: true,
     },
   },
   { timestamps: true }

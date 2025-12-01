@@ -6,7 +6,7 @@ const cartSchema = new Schema(
     customer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Customer',
-      require: true,
+      required: true,
       unique: true,
     },
     items: [
@@ -14,15 +14,15 @@ const cartSchema = new Schema(
         product: {
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Product',
-          require: true,
+          required: true,
         },
         price: {
           type: Number,
-          require: true,
+          required: true,
         },
         quantity: {
           type: Number,
-          require: true,
+          required: true,
         },
         variants: {
           color: String,
