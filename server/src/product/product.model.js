@@ -3,18 +3,18 @@ import mongoose, { Schema } from 'mongoose';
 const productSchema = new Schema({
   name: {
     type: String,
-    require: true,
+    required: true,
     trim: true,
     minLength: 1,
     maxLength: 255,
   },
   slug: {
     type: String,
-    require: true,
+    required: true,
   },
   sku: {
     type: String,
-    require: true,
+    required: true,
     trim: true,
   },
   image: [
@@ -25,12 +25,12 @@ const productSchema = new Schema({
   ],
   price: {
     type: Number,
-    require: true,
+    required: true,
     trim: true,
   },
   stock: {
     type: Number,
-    require: true,
+    required: true,
   },
   category: {
     type: mongoose.Schema.Types.ObjectId,
@@ -43,7 +43,7 @@ const productSchema = new Schema({
   status: {
     type: String,
     enum: ['AVAILABLE', 'SOLD OUT'],
-    require: true,
+    required: true,
   },
   discount: {
     type: mongoose.Schema.Types.ObjectId,
@@ -57,7 +57,7 @@ const productSchema = new Schema({
   ],
   sold: {
     type: Number,
-    require: true
+    required: true
   }
 });
 

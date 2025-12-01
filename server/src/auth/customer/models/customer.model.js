@@ -4,21 +4,21 @@ const customerSchema = new Schema(
   {
     username: {
       type: String,
-      require: true,
+      required: true,
       trim: true,
       minLength: 1,
       maxLength: 50,
     },
     password: {
       type: String,
-      require: true,
+      required: true,
       trim: true,
       minLength: 5,
       maxLength: 50,
     },
     email: {
       type: String,
-      require: true,
+      required: true,
       unique: true,
       trim: true,
       minLength: 5,
@@ -27,7 +27,7 @@ const customerSchema = new Schema(
     gender: {
       type: String,
       enum: ['MALE', 'FEMALE', 'OTHER'],
-      require: true,
+      required: true,
     },
     phone: {
       type: String,
@@ -43,7 +43,7 @@ const customerSchema = new Schema(
     status: {
       type: String,
       enum: ['ACTIVATED', 'UNACTIVATED'],
-      require: true,
+      required: true,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,

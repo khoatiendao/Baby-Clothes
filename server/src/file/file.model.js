@@ -6,7 +6,7 @@ const fileSchema = new Schema({
     },
     url: {
         type: String,
-        require: true,
+        required: true,
     },
     fileType: {
         type: String,    

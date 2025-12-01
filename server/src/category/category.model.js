@@ -4,7 +4,7 @@ const categorySchema = new Schema(
   {
     name: {
       type: String,
-      require: true,
+      required: true,
       trim: true,
       minLength: 5,
       maxLength: 255
@@ -17,7 +17,7 @@ const categorySchema = new Schema(
       type: String,
       enum: ['ACTIVE', 'INACTIVE'],
       default: 'ACTIVE',
-      require: true,
+      required: true,
     },
   },
   {
