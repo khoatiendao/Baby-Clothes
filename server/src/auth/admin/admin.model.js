@@ -1,21 +1,6 @@
 import mongoose, {Schema} from "mongoose";
 
 const adminSchema = new Schema({
-    username: {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true,
-        minLength: 5,
-        maxLength: 255
-    },
-    password: {
-        type: String,
-        required: true,
-        trim: true,
-        minLength: 5,
-        maxLength: 50
-    },
     email: {
         type: String,
         required: true,
@@ -23,6 +8,13 @@ const adminSchema = new Schema({
         trim: true,
         minLength: 5,
         maxLength: 255,
+    },
+    password: {
+        type: String,
+        required: true,
+        trim: true,
+        minLength: 5,
+        maxLength: 20
     },
     permission: {
         type: String,
@@ -35,4 +27,4 @@ const adminSchema = new Schema({
     timestamps: true
 });
 
-export const admin = mongoose.model("Admin", adminSchema);
+export const Admin = mongoose.model("Admin", adminSchema);
