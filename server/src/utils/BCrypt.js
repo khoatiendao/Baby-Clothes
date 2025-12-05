@@ -1,35 +1,13 @@
-const Bcrypt = require("bcrypt")
+import bcrypt from 'bcrypt'
 
-const BCryptUtils = {
-    hashPassword(password) {
-        const saltRounds = 14;
-        Bcrypt.hash(password, saltRounds, function(err, hash) {
-            // if(err) {
-            //     return res.json({ success: false, message: 'Can not Bcrypt password' })
-            // } else {
-            //     this.password = hash;
-            // }
-            password = hash;
-        });
-        return password;
-        // const saltRounds = 14;
-        // return new Promise((resolve, reject) => {
-        //     Bcrypt.genSalt(saltRounds, (err, salt) => {
-        //         if (err) {
-        //             return reject(err);
-        //         }
-        //         Bcrypt.hash(password, salt, (err, hash) => {
-        //             if (err) {
-        //                 return reject(err);
-        //             }
-        //             resolve(hash);
-        //         });
-        //     });
-        // });
+const saltRounds = 14;
+
+export const passwordUtil = {
+    async hash(password) {
+        return await bcrypt.hash(password, saltRounds);        
     },
-    comparePassword(password,hashPassword) {
-        return Bcrypt.compare(password, hashPassword);
+
+    async compare(password, hashedPassword) {
+        return await bcrypt.compare(password, hashedPassword);
     }
 }
-
-module.exports = BCryptUtils;

@@ -13,15 +13,19 @@ const adminSchema = new Schema({
         type: String,
         required: true,
         trim: true,
-        minLength: 5,
-        maxLength: 20
     },
-    permission: {
+    permission: [{
         type: String,
         enum: ['ALL', 'READ', 'CREATE', 'UPDATE', 'DELETE'],
         required: true,
         default: 'ALL'
-    },
+    }],
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        unique: true
+    } 
 }, {
     versionKey: 'version',
     timestamps: true
