@@ -1,22 +1,27 @@
-import { validationBase } from "../../common/helpers/validation";
-import { AdminDto, AdminLoginDto, UpdateAdminDto } from "./auth.admin.dto";
-import { AdminService } from "./auth.admin.service";
+import { AdminService } from "./auth.admin.service.js";
 
 
-export const createController = async (req, res) => {
-    const data = validationBase(AdminDto);
-    const result = await AdminService.createAdmin(data);
-    res.status(result.status).json(result);
+export const createController = async (req, res) => {   
+    const result = await AdminService.createAdmin(req.body);
+    res.json(result);
 }
 
-export const loginController = async (req, res) => {
-    const data = validationBase(AdminLoginDto);
-    const result = await AdminService.login(data);
-    res.status(result.status).json(result);
+export const loginController = async (req, res) => {    
+    const result = await AdminService.login(req.body);
+    res.json(result);
 }
 
-export const updateController = async (req, res) => {
-    const data = validationBase(UpdateAdminDto);
-    const result = await AdminService.createAdmin(data);
-    res.status(result.status).json(result);
+export const updateController = async (req, res) => {    
+    const result = await AdminService.update(req.params.id, req.body);
+    res.json(result);
+}
+
+export const AdminDetailController = async (req, res) => {
+    const result = await AdminService.findById(req.params.id);
+    res.json(result);
+}
+
+export const DeleteOneAdminController = async (req, res) => {
+    const result = await AdminService.delete(req.params.id);
+    res.json(result);
 }

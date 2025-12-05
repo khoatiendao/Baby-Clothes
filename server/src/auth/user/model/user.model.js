@@ -1,6 +1,5 @@
 import mongoose, { Schema } from "mongoose";
 
-
 const userSchema = new Schema(
   {
     role: {
@@ -12,4 +11,4 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-export const user = mongoose.model('User', userSchema);
+export const User = mongoose.model('User', userSchema);
