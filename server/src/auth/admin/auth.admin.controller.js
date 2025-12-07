@@ -7,7 +7,12 @@ export const createController = async (req, res) => {
 }
 
 export const loginController = async (req, res) => {    
-    const result = await AdminService.login(req.body);
+    const result = await AdminService.login({
+        email: req.body.email, 
+        password: req.body.password,
+        userAgent: req.headers["user-agent"],
+        ip: req.ip
+    });
     res.json(result);
 }
 

@@ -1,10 +1,9 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import { auth } from '../../auth/user/model/auth.model';
 dotenv.config();
 
 export const createJwt = {
-  accessToken(id, role) {
+  async accessToken(id, role) {
     const token = jwt.sign({ id, role }, process.env.JWT_SECRET, {
       algorithm: 'HS256',
       expiresIn: process.env.JWT_EXPRIES,
@@ -17,13 +16,6 @@ export const createJwt = {
       algorithm: 'HS256',
       expiresIn: process.env.JWT_REFRESH_EXPRIES,
     });
-
-    await auth.create({
-      token,
-      userId,
-      expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // & 7 days
-    });
-
     return token;
   },
 
