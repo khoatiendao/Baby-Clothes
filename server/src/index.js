@@ -8,9 +8,10 @@ const PORT = process.env.PORT || 8433;
 
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+app.set('trust proxy', true);
 
 app.listen(PORT, () => {
-    console.log(`Hello ${PORT}`);
+    console.log(`Server run ${PORT}`);
 });
 
 app.use(function(req, res, next) {

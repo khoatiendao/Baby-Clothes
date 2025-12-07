@@ -7,29 +7,23 @@ const authSchema = new Schema({
         required: true
     },
     token: {
-        type: String,
-        required: true,
+        type: String,        
         trim: true
     },
     userAgent: {
-        type: String,
-        required: true
+        type: String,        
     },
     ip: {
-        type: String,
-        required: true,
+        type: String,        
     },
     createAt: {
-        type: Date,
-        required: true
+        type: Date,        
     },
     expiresAt: {
-        type: Date,
-        required: true,
+        type: Date,        
     },
     revoked: {
-        type: Boolean,
-        default: false
+        type: Boolean,        
     }
 }, {
     timestamps: true
@@ -39,4 +33,4 @@ authSchema.index({ userId: 1 });
 authSchema.index({ token: 1 }, { unique: true });
 authSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 });
 
-export const auth = mongoose.model('Auth', authSchema);
+export const Auth = mongoose.model('Auth', authSchema);

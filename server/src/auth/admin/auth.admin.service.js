@@ -2,13 +2,17 @@ import mongoose from 'mongoose';
 import { UserService } from '../user/services/user.service.js';
 import { Admin } from './admin.model.js';
 import { passwordUtil } from '../../utils/BCrypt.js';
+import { createJwt } from '../../common/helpers/jwt.js';
+import { AuthService } from '../user/services/auth.service.js';
 
 class adminService {
   async createAdmin(data) {
     const session = await mongoose.startSession();
     try {
       session.startTransaction();
-      const user = await UserService.createUser({ role: 'ADMIN' }, session);
+      const user = await UserService.createUser({ role: 'ADMIN' }, session);      
+
+      await AuthService.create({userId: user[0]._id}, session);
 
       const checkEmail = await Admin.findOne({ email: data.email });
 
@@ -48,7 +52,10 @@ class adminService {
   }
 
   async login(data) {
+    const session = await mongoose.startSession();
     try {
+      session.startTransaction();
+
       const findEmail = await Admin.findOne({ email: data.email });
 
       if (!findEmail)
@@ -66,19 +73,41 @@ class adminService {
           success: false,
           message: 'Wrong password',
         };
-        
+      
+      const accessToken = await createJwt.accessToken(findEmail._id, findEmail.user?.role);
+      const refreshToken = await createJwt.refreshToken(findEmail.user?._id);
+
+      const dataAuth = {
+        token: refreshToken,
+        userAgent: data.userAgent,
+        ip: data.ip,
+        revoked: false,
+        createAt: new Date(Date.now()),
+        expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+      }
+
+      await AuthService.updateAuth(findEmail.user?._id, dataAuth);
+      session.commitTransaction();
+
       return {
         status: 200,
         success: true,
         message: 'login successfull',
+        data: {
+          accessToken: accessToken,
+          refreshToken: refreshToken
+        }
       };
     } catch (error) {
+      await session.abortTransaction();
       return {
         status: 500,
         success: false,
         message: 'Internal server error',
         error: error.message,
       };
+    } finally {
+      session.endSession();
     }
   }
 
