@@ -1,19 +1,17 @@
 import express from 'express';
-import { AdminDetailController, createController, DeleteOneAdminController, loginController, updateController } from './auth.admin.controller.js';
 import { validationBase } from '../../common/helpers/validation.js';
-import { AdminDto, AdminLoginDto, UpdateAdminDto } from './auth.admin.dto.js';
+import { verifyRefreshTokenMiddleware } from '../../common/middlewares/auth.middleware.js';
+import { AuthAdminController } from './auth.admin.controller.js';
+import { AuthController } from '../user/controller/auth.controller.js';
+import { AdminLoginDto } from './auth.admin.dto.js';
 
 
-const adminRouter = express.Router();
+const AuthAdminRouter = express.Router();
+// Login in page Admin
+AuthAdminRouter.post('/login', validationBase(AdminLoginDto), AuthAdminController.login);
 
-adminRouter.post('/auth/login', validationBase(AdminLoginDto), loginController)
+AuthAdminRouter.post('/logout', verifyRefreshTokenMiddleware, AuthAdminController.logout);
 
-adminRouter.post('/create', validationBase(AdminDto), createController);
+AuthAdminRouter.post('/refresh_token', verifyRefreshTokenMiddleware, AuthController.refreshToken);
 
-adminRouter.put('/update/:id', validationBase(UpdateAdminDto), updateController);
-
-adminRouter.get('/:id', AdminDetailController);
-
-adminRouter.delete('/:id', DeleteOneAdminController);
-
-export default adminRouter;
+export default AuthAdminRouter;
