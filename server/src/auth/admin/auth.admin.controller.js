@@ -1,32 +1,41 @@
-import { AdminService } from "./auth.admin.service.js";
+import { AuthService } from "../user/services/auth.service.js";
+import { AuthAdminService } from "./auth.admin.service.js";
 
 
-export const createController = async (req, res) => {   
-    const result = await AdminService.createAdmin(req.body);
-    res.json(result);
-}
+class authAdminController {
 
-export const loginController = async (req, res) => {    
-    const result = await AdminService.login({
-        email: req.body.email, 
+  async login(req, res) {
+    try {
+      const result = await AuthAdminService.login({
+        email: req.body.email,
         password: req.body.password,
-        userAgent: req.headers["user-agent"],
-        ip: req.ip
-    });
-    res.json(result);
+        userAgent: req.headers['user-agent'],
+        ip: req.ip,
+      });
+      res.json(result);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
+  async logout(req, res) {
+    try {
+      await AuthService.logout(req.userId, req.refreshToken);
+
+      res.clearCookie('refreshToken', {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'strict',
+      });
+
+      return res.json({
+        success: true,
+        message: 'Logged out successfully',
+      });
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  }
 }
 
-export const updateController = async (req, res) => {    
-    const result = await AdminService.update(req.params.id, req.body);
-    res.json(result);
-}
-
-export const AdminDetailController = async (req, res) => {
-    const result = await AdminService.findById(req.params.id);
-    res.json(result);
-}
-
-export const DeleteOneAdminController = async (req, res) => {
-    const result = await AdminService.delete(req.params.id);
-    res.json(result);
-}
+export const AuthAdminController = new authAdminController();

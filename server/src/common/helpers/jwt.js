@@ -3,8 +3,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const createJwt = {
-  async accessToken(id, role) {
-    const token = jwt.sign({ id, role }, process.env.JWT_SECRET, {
+  async accessToken(userId) {
+    const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
       algorithm: 'HS256',
       expiresIn: process.env.JWT_EXPRIES,
     });
@@ -19,7 +19,7 @@ export const createJwt = {
     return token;
   },
 
-  emailCodeToken(userId, code) {
+  async emailCodeToken(userId, code) {
     const token = jwt.sign(
       { sub: userId, code, type: 'email_verify' },
       process.env.JWT_SECRET,
@@ -56,30 +56,19 @@ export const verifyAccessToken = (req, res, next) => {
 
 export const verifyRefreshToken = async (token) => {
   try {
-    if (token) {
-      throw new Error('Refresh token missing');
+    if (!token) {
+      throw new Error('Require refresh token!');
     }
 
     let decoded;
     try {
       decoded = jwt.verify(token, process.env.JWT_REFRESH_SECRET);
     } catch (error) {
-      throw new Error('Invalid or expired refresh token');
+      throw new Error('Invalid refresh token');
     }
-
-    const storedToken = await auth.findOne({ token });
-    if (!storedToken) {
-      throw new Error('Refresh token not found or revoked');
-    }
-
-    if (storedToken.revoked === true) {
-      throw new Error('Refresh token has been revoked');
-    }
-
-    if (storedToken.expiresAt < new Date())
-      throw new Error('Refresh token expired');
 
     return decoded;
+
   } catch (error) {
     throw new Error(error);
   }
