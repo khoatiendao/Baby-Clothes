@@ -10,7 +10,7 @@ class authAdminService {
     try {
       session.startTransaction();
 
-      const findEmail = await Admin.findOne({ email: data.email });
+      const findEmail = await Admin.findOne({ email: data.email }).populate('user');
 
       if (!findEmail)
         return {
@@ -19,7 +19,7 @@ class authAdminService {
           message: 'Email not found',
         };
 
-      const matchPassword = passwordUtil.compare(
+      const matchPassword = await passwordUtil.compare(
         data.password,
         findEmail.password
       );
@@ -29,9 +29,9 @@ class authAdminService {
           status: 400,
           success: false,
           message: 'Wrong password',
-        };
+        };      
 
-      const accessToken = await createJwt.accessToken(findEmail.user?._id);
+      const accessToken = await createJwt.accessToken(findEmail.user?._id, findEmail.user?.role);
       const refreshToken = await createJwt.refreshToken(findEmail.user?._id);
 
       const dataAuth = {
@@ -47,12 +47,9 @@ class authAdminService {
       session.commitTransaction();
 
       return {
-        status: 200,
-        success: true,
-        message: 'login successfull',
         data: {
-          accessToken: accessToken,
-          refreshToken: refreshToken,
+          access_token: accessToken,
+          refresh_token: refreshToken,
         },
       };
     } catch (error) {
