@@ -10,7 +10,10 @@ export const AdminDto = Joi.object({
 });
 
 export const ListAdminDto = Joi.object({
-  email: Joi.string().email(),
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .optional()
+    .allow('')
 });
 
 export const UpdateAdminDto = Joi.object({

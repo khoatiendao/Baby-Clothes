@@ -1,5 +1,6 @@
 import { createJwt, verifyRefreshToken } from '../../../common/helpers/jwt.js';
 import { Auth } from '../model/auth.model.js';
+import { User } from '../model/user.model.js';
 
 class authService {
   async create(userId, session) {
@@ -48,7 +49,11 @@ class authService {
     await stored.save();
 
     // Create new access token
-    const newAcessToken = await createJwt.accessToken(checkReToken.userId);
+    const findUser = await User.findOne({_id: checkReToken.userId});
+
+    if(!findUser) throw new Error("User not found");
+    
+    const newAcessToken = await createJwt.accessToken(checkReToken.userId, findUser.role);
 
     return {
         accessToken: newAcessToken,

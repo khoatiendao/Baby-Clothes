@@ -3,8 +3,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const createJwt = {
-  async accessToken(userId) {
-    const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
+  async accessToken(userId, role) {
+    const token = jwt.sign({ userId, role }, process.env.JWT_SECRET, {
       algorithm: 'HS256',
       expiresIn: process.env.JWT_EXPRIES,
     });
@@ -45,7 +45,7 @@ export const verifyAccessToken = (req, res, next) => {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    req.user = decoded;
+    req.decoded = decoded;
     next();
   } catch (error) {
     return res.status(401).json({

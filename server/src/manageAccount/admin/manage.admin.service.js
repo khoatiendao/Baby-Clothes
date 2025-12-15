@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { Admin } from '../../auth/admin/admin.model.js';
 import { passwordUtil } from '../../utils/BCrypt.js';
 import { UserService } from '../../auth/user/services/user.service.js';
+import { paginate } from '../../common/utils/paginate.js';
 
 class manageAdminService {
   async createAdmin(data) {
@@ -52,6 +53,22 @@ class manageAdminService {
     }
   }
 
+  async getList({ page = 1, limit = 20, email }) {
+    const query = {};
+
+    if (email) {
+      query.email = { $regex: email, $options: 'i' };
+    }
+
+    return paginate({
+      model: Admin,
+      page: Number(page),
+      limit: Number(limit),
+      query,
+      select: '-password',
+    });
+  }
+
   async findById(_id) {
     try {
       const result = await Admin.findById(_id).exec();
@@ -98,7 +115,7 @@ class manageAdminService {
       await Admin.findByIdAndDelete(_id, { session });
 
       if (admin.user) {
-        await UserService.deleteUser(admin.user);        
+        await UserService.deleteUser(admin.user);
       }
 
       await session.commitTransaction();
