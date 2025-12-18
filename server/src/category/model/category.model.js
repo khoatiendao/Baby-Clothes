@@ -16,7 +16,7 @@ const categorySchema = new Schema(
     status: {
       type: String,
       enum: ['ACTIVE', 'INACTIVE'],
-      default: 'ACTIVE',
+      default: 'INACTIVE',
       required: true,
     },
   },
@@ -26,4 +26,4 @@ const categorySchema = new Schema(
   }
 );
 
-export const category = mongoose.model('Category', categorySchema);
+export const Category = mongoose.model('Category', categorySchema);
