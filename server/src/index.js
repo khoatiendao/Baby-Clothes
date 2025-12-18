@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongooseConn from './common/config/mongoose.js';
 import AdminRoute from './route/admin/index.js';
+import CustomerRoute from './route/customer/index.js';
 
 const app = express();
 const PORT = process.env.PORT || 8433;
@@ -23,7 +24,8 @@ app.use(function(req, res, next) {
     next()
 });
 
-app.use('/api/v1', AdminRoute);
+app.use('/api/v1/admin', AdminRoute);
+app.use('/api/v1/customer', CustomerRoute);
 
 // app.use('/api/customer', require('./api/customer.js'));
 

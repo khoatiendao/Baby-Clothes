@@ -32,10 +32,10 @@ export const verifyRefreshTokenMiddleware = async (req, res, next) => {
   }
 };
 
-export const authorizeRole = (role) => {
+export const authorizeRole = (...roles) => {
   return (req, res, next) => {
     const userRole = req.decoded?.role;    
-    if (!userRole || !role.includes(userRole)) {
+    if (!userRole || !roles.includes(userRole)) {
       return res.status(403).json({
         success: false,
         message: 'Forbidden: insufficient permissions',
